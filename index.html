@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moja Strona</title>
+    <title>Solana Arena</title>
     <style>
         * {
             margin: 0;
@@ -21,21 +21,19 @@
         .navbar {
             width: 100%;
             height: 70px;
-            background-color: #1f1f1f;
+            background-color: #181818; /* Ciemniejszy szary pasek */
             display: flex;
-            align-items: center;
+            align-items: center; /* Idealne wyśrodkowanie w pionie */
             padding-left: 25%;
             border-bottom: 1px solid #3a3a3a;
-            overflow: visible; /* Pozwala obrazkowi wystawać poza pasek */
+            overflow: hidden; /* Gwarantuje, że nic nie wyjdzie poza pasek */
         }
 
-        /* Powiększony obrazek wystający lekko poza pasek */
+        /* Logo idealnie wyśrodkowane i mieszczące się w pasku */
         .navbar img {
-            height: 95px; /* Zwiększona wysokość (pasek ma 70px, więc wystaje) */
+            height: 56px; /* Duże, ale mieści się wewnątrz 70px paska */
             width: auto;
-            position: relative;
-            top: 8px; /* Lekkie przesunięcie w dół, żeby nie dotykał górnej krawędzi ekranu */
-            z-index: 10; /* Upewnia się, że obrazek będzie zawsze na wierzchu */
+            display: block;
         }
     </style>
 </head>
