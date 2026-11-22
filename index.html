@@ -21,22 +21,23 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Pasek z symetrycznym układem po lewej i prawej stronie */
+        /* Pasek górny oparty na siatce 3-kolumnowej dla idealnego wycentrowania środka */
         .navbar {
             width: 100%;
             height: 66px;
             background-color: #111318;
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
-            justify-content: space-between;
             padding-left: 22%;
-            padding-right: 22%; /* Dokładnie ta sama odległość od prawej krawędzi co logo od lewej */
+            padding-right: 22%;
             border-bottom: 1px solid #22252e;
             overflow: visible;
         }
 
-        /* Lewa strona: główne logo */
+        /* Lewa kolumna: logo dosunięte do lewej krawędzi kontenera */
         .nav-left {
+            justify-self: start;
             display: flex;
             align-items: center;
         }
@@ -47,11 +48,11 @@
             display: block;
         }
 
-        /* Prawa strona: saldo + przycisk Connect */
-        .nav-right {
+        /* Środkowa kolumna: licznik pieniędzy dokładnie na środku u góry */
+        .nav-center {
+            justify-self: center;
             display: flex;
             align-items: center;
-            gap: 8px;
         }
 
         .balance-box {
@@ -68,6 +69,7 @@
             font-weight: 700;
             font-size: 13px;
             cursor: pointer;
+            white-space: nowrap;
             transition: background-color 0.15s ease, border-color 0.15s ease;
         }
 
@@ -89,11 +91,17 @@
             margin-left: 2px;
         }
 
-        /* Przycisk Connect w kolorze czerwonej ikony */
+        /* Prawa kolumna: przycisk Connect dosunięty do prawej krawędzi kontenera */
+        .nav-right {
+            justify-self: end;
+            display: flex;
+            align-items: center;
+        }
+
         .connect-btn {
             height: 40px;
-            padding: 0 16px;
-            background-color: #ff3b3b;
+            padding: 0 18px;
+            background-color: #ff1e1e;
             border: none;
             border-radius: 8px;
             color: #ffffff;
@@ -101,11 +109,12 @@
             font-weight: 700;
             font-size: 13px;
             cursor: pointer;
+            white-space: nowrap;
             transition: background-color 0.15s ease, transform 0.1s ease;
         }
 
         .connect-btn:hover {
-            background-color: #e62e2e;
+            background-color: #e01919;
         }
 
         .connect-btn:active {
@@ -120,12 +129,15 @@
             <img src="Nowy projekt (78).png" alt="Logo">
         </div>
 
-        <div class="nav-right">
+        <div class="nav-center">
             <div class="balance-box" id="balanceBox">
                 <img src="Nowy projekt (79).png" alt="Ikona waluty">
                 <span id="balanceAmount">PLN 0.00</span>
                 <span class="chevron">⌄</span>
             </div>
+        </div>
+
+        <div class="nav-right">
             <button class="connect-btn" id="connectBtn">Connect</button>
         </div>
     </header>
@@ -141,7 +153,7 @@
                 balanceAmount.textContent = 'PLN 125.00';
             } else {
                 connectBtn.textContent = 'Connect';
-                connectBtn.style.backgroundColor = '#ff3b3b';
+                connectBtn.style.backgroundColor = '#ff1e1e';
                 balanceAmount.textContent = 'PLN 0.00';
             }
         });
