@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solana Arena</title>
+    <!-- Czcionka Rubik Bold -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -17,7 +21,7 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Pasek z trzema strefami: lewo (logo główne), środek (saldo + Connect), prawo (wolne pod resztę) */
+        /* Pasek z symetrycznym układem po lewej i prawej stronie */
         .navbar {
             width: 100%;
             height: 66px;
@@ -25,16 +29,16 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 24px;
+            padding-left: 22%;
+            padding-right: 22%; /* Dokładnie ta sama odległość od prawej krawędzi co logo od lewej */
             border-bottom: 1px solid #22252e;
             overflow: visible;
         }
 
-        /* Lewa strona: główne logo przesunięte w stronę środka */
+        /* Lewa strona: główne logo */
         .nav-left {
             display: flex;
             align-items: center;
-            padding-left: 22%;
         }
 
         .nav-left img {
@@ -43,8 +47,8 @@
             display: block;
         }
 
-        /* Środek: kapsułka z saldem + przycisk Connect */
-        .nav-center {
+        /* Prawa strona: saldo + przycisk Connect */
+        .nav-right {
             display: flex;
             align-items: center;
             gap: 8px;
@@ -60,8 +64,9 @@
             border: 1px solid #262a34;
             border-radius: 8px;
             color: #ffffff;
+            font-family: 'Rubik', sans-serif;
+            font-weight: 700;
             font-size: 13px;
-            font-weight: 600;
             cursor: pointer;
             transition: background-color 0.15s ease, border-color 0.15s ease;
         }
@@ -84,30 +89,27 @@
             margin-left: 2px;
         }
 
+        /* Przycisk Connect w kolorze czerwonej ikony */
         .connect-btn {
             height: 40px;
             padding: 0 16px;
-            background-color: #7c4dff;
+            background-color: #ff3b3b;
             border: none;
             border-radius: 8px;
             color: #ffffff;
-            font-size: 13px;
+            font-family: 'Rubik', sans-serif;
             font-weight: 700;
+            font-size: 13px;
             cursor: pointer;
             transition: background-color 0.15s ease, transform 0.1s ease;
         }
 
         .connect-btn:hover {
-            background-color: #6b3cf5;
+            background-color: #e62e2e;
         }
 
         .connect-btn:active {
             transform: scale(0.98);
-        }
-
-        /* Prawy balansujący element, żeby .nav-center trzymał idealny środek */
-        .nav-right {
-            width: 22%;
         }
     </style>
 </head>
@@ -118,7 +120,7 @@
             <img src="Nowy projekt (78).png" alt="Logo">
         </div>
 
-        <div class="nav-center">
+        <div class="nav-right">
             <div class="balance-box" id="balanceBox">
                 <img src="Nowy projekt (79).png" alt="Ikona waluty">
                 <span id="balanceAmount">PLN 0.00</span>
@@ -126,8 +128,6 @@
             </div>
             <button class="connect-btn" id="connectBtn">Connect</button>
         </div>
-
-        <div class="nav-right"></div>
     </header>
 
     <script>
@@ -135,14 +135,13 @@
         const balanceAmount = document.getElementById('balanceAmount');
 
         connectBtn.addEventListener('click', () => {
-            // Prosta reakcja kliknięcia — podmień na własną logikę połączenia portfela/konta
             if (connectBtn.textContent === 'Connect') {
                 connectBtn.textContent = 'Connected';
                 connectBtn.style.backgroundColor = '#22a06b';
                 balanceAmount.textContent = 'PLN 125.00';
             } else {
                 connectBtn.textContent = 'Connect';
-                connectBtn.style.backgroundColor = '#7c4dff';
+                connectBtn.style.backgroundColor = '#ff3b3b';
                 balanceAmount.textContent = 'PLN 0.00';
             }
         });
