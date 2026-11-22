@@ -12,36 +12,141 @@
         }
 
         body {
-            background-color: #111318; /* Ciemny odcień jak na screenie z Shuffle */
+            background-color: #111318;
             color: #ffffff;
             font-family: Arial, sans-serif;
         }
 
-        /* Pasek o identycznych proporcjach jak na przykładzie */
+        /* Pasek z trzema strefami: lewo (logo główne), środek (saldo + Connect), prawo (wolne pod resztę) */
         .navbar {
             width: 100%;
             height: 66px;
             background-color: #111318;
             display: flex;
             align-items: center;
-            padding-left: 25%; /* Pozycja od lewej strony */
-            border-bottom: 1px solid #22252e; /* Cienka, subtelna linia oddzielająca */
+            justify-content: space-between;
+            padding: 0 24px;
+            border-bottom: 1px solid #22252e;
             overflow: visible;
         }
 
-        /* Logo dopasowane rozmiarem do paska */
-        .navbar img {
-            height: 90px; /* Skompensowane pod puste marginesy w pliku PNG */
+        /* Lewa strona: główne logo przesunięte w stronę środka */
+        .nav-left {
+            display: flex;
+            align-items: center;
+            padding-left: 22%;
+        }
+
+        .nav-left img {
+            height: 90px;
             width: auto;
             display: block;
+        }
+
+        /* Środek: kapsułka z saldem + przycisk Connect */
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .balance-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            height: 40px;
+            padding: 0 14px;
+            background-color: #1a1d24;
+            border: 1px solid #262a34;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.15s ease, border-color 0.15s ease;
+        }
+
+        .balance-box:hover {
+            background-color: #20242d;
+            border-color: #343946;
+        }
+
+        .balance-box img {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+            display: block;
+        }
+
+        .chevron {
+            color: #9aa0b0;
+            font-size: 11px;
+            margin-left: 2px;
+        }
+
+        .connect-btn {
+            height: 40px;
+            padding: 0 16px;
+            background-color: #7c4dff;
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.15s ease, transform 0.1s ease;
+        }
+
+        .connect-btn:hover {
+            background-color: #6b3cf5;
+        }
+
+        .connect-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Prawy balansujący element, żeby .nav-center trzymał idealny środek */
+        .nav-right {
+            width: 22%;
         }
     </style>
 </head>
 <body>
 
     <header class="navbar">
-        <img src="Nowy projekt (78).png" alt="Solana Arena">
+        <div class="nav-left">
+            <img src="Nowy projekt (78).png" alt="Logo">
+        </div>
+
+        <div class="nav-center">
+            <div class="balance-box" id="balanceBox">
+                <img src="Nowy projekt (79).png" alt="Ikona waluty">
+                <span id="balanceAmount">PLN 0.00</span>
+                <span class="chevron">⌄</span>
+            </div>
+            <button class="connect-btn" id="connectBtn">Connect</button>
+        </div>
+
+        <div class="nav-right"></div>
     </header>
+
+    <script>
+        const connectBtn = document.getElementById('connectBtn');
+        const balanceAmount = document.getElementById('balanceAmount');
+
+        connectBtn.addEventListener('click', () => {
+            // Prosta reakcja kliknięcia — podmień na własną logikę połączenia portfela/konta
+            if (connectBtn.textContent === 'Connect') {
+                connectBtn.textContent = 'Connected';
+                connectBtn.style.backgroundColor = '#22a06b';
+                balanceAmount.textContent = 'PLN 125.00';
+            } else {
+                connectBtn.textContent = 'Connect';
+                connectBtn.style.backgroundColor = '#7c4dff';
+                balanceAmount.textContent = 'PLN 0.00';
+            }
+        });
+    </script>
 
 </body>
 </html>
